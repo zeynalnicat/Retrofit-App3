@@ -80,4 +80,7 @@ dependencies {
     // LiveData
     implementation ("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
     ksp ("androidx.lifecycle:lifecycle-compiler:$lifecycle_version")
+
+    //swiper refresh layout
+    implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
 }

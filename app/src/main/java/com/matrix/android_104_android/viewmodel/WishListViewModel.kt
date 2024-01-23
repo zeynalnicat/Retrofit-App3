@@ -5,22 +5,21 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.matrix.android_104_android.db.RoomDb
-import com.matrix.android_104_android.db.WishListEntity
+import com.matrix.android_104_android.db.wishlist.WishListEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class WishListViewModel : ViewModel() {
+class WishListViewModel(private val roomDb: RoomDb) : ViewModel() {
     private val _products = MutableLiveData<List<WishListEntity>>()
 
     val products: LiveData<List<WishListEntity>>
         get() = _products
 
-    fun getProducts(context: Context) {
-        val roomDb = RoomDb.accessDB(context.applicationContext)
-        val wishListDao = roomDb?.wishListDao()
+    fun getProducts() {
+        val wishListDao = roomDb.wishListDao()
         CoroutineScope(Dispatchers.IO).launch {
-            val products = wishListDao?.getAll()
+            val products = wishListDao.getAll()
             _products.postValue(products ?: emptyList())
         }
     }

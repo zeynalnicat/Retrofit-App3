@@ -1,15 +1,13 @@
 package com.matrix.android_104_android.ui.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.matrix.android_104_android.databinding.ItemWishListBinding
-import com.matrix.android_104_android.db.WishListEntity
-import com.matrix.android_104_android.model.Product
+import com.matrix.android_104_android.db.wishlist.WishListEntity
 
 class WishListAdapter : RecyclerView.Adapter<WishListAdapter.ViewHolder>() {
 
@@ -43,7 +41,7 @@ class WishListAdapter : RecyclerView.Adapter<WishListAdapter.ViewHolder>() {
     }
 
     inner class ViewHolder(private val binding:ItemWishListBinding):RecyclerView.ViewHolder(binding.root){
-         fun bind(current:WishListEntity){
+         fun bind(current: WishListEntity){
              Glide.with(binding.root).load(current.thumbnail).into(binding.imgProduct)
              binding.txtCategory.text = current.category
              binding.txtDescription.text = current.description

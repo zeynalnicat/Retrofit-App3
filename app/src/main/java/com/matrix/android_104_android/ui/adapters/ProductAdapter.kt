@@ -12,8 +12,9 @@ import com.google.android.material.snackbar.Snackbar
 import com.matrix.android_104_android.R
 import com.matrix.android_104_android.databinding.ItemSingleProductBinding
 import com.matrix.android_104_android.db.RoomDb
-import com.matrix.android_104_android.db.WishListEntity
+import com.matrix.android_104_android.db.wishlist.WishListEntity
 import com.matrix.android_104_android.model.Product
+import com.matrix.android_104_android.model.ProductRoomModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -21,12 +22,12 @@ import kotlinx.coroutines.launch
 class ProductAdapter(private val context: Context, private val nav: (Bundle) -> Unit) :
     RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
-    private val diffCallBack = object : DiffUtil.ItemCallback<Product>() {
-        override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean {
+    private val diffCallBack = object : DiffUtil.ItemCallback<ProductRoomModel>() {
+        override fun areItemsTheSame(oldItem: ProductRoomModel, newItem: ProductRoomModel): Boolean {
             return oldItem === newItem
         }
 
-        override fun areContentsTheSame(oldItem: Product, newItem: Product): Boolean {
+        override fun areContentsTheSame(oldItem: ProductRoomModel, newItem: ProductRoomModel): Boolean {
             return oldItem == newItem
         }
 
@@ -50,7 +51,7 @@ class ProductAdapter(private val context: Context, private val nav: (Bundle) -> 
 
     inner class ViewHolder(private val binding: ItemSingleProductBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(current: Product) {
+        fun bind(current: ProductRoomModel) {
             Glide.with(binding.root).load(current.thumbnail).into(binding.imgProduct)
             binding.txtProductName.text = current.title
             CoroutineScope(Dispatchers.Main).launch {
@@ -76,22 +77,23 @@ class ProductAdapter(private val context: Context, private val nav: (Bundle) -> 
             return check?.isNotEmpty() ?: false
         }
 
-        fun insertDb(current: Product) {
+        fun insertDb(current: ProductRoomModel) {
             val roomDb = RoomDb.accessDB(context.applicationContext)
             val wishListDao = roomDb?.wishListDao()
             CoroutineScope(Dispatchers.IO).launch {
-                if (!checkInDb(current.id)) {
+                if (!checkInDb(current.id)){
+
                     val insertion = wishListDao?.insert(
                         WishListEntity(
-                            brand = current.brand,
-                            thumbnail = current.thumbnail,
-                            title = current.title,
-                            productId = current.id,
-                            price = current.price,
-                            stock = current.stock,
-                            description = current.description,
-                            discountPercentage = current.discountPercentage,
-                            category = current.category,
+                            brand =  current.brand,
+                            thumbnail =  current.thumbnail,
+                            title =  current.title,
+                            productId =  current.id,
+                            price =  current.price,
+                            stock =  current.stock,
+                            description =  current.description,
+                            discountPercentage =  current.discountPercentage,
+                            category =  current.category,
                             rating = current.rating,
                         )
                     )
@@ -104,7 +106,7 @@ class ProductAdapter(private val context: Context, private val nav: (Bundle) -> 
         }
     }
 
-    fun submitList(products: List<Product>) {
+    fun submitList(products: List<ProductRoomModel>) {
         diffUtil.submitList(products)
     }
 }

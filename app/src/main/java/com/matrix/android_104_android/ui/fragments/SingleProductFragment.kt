@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.matrix.android_104_android.databinding.FragmentSingleProductBinding
 import com.matrix.android_104_android.model.Product
+import com.matrix.android_104_android.model.ProductRoomModel
 
 
 class SingleProductFragment : Fragment() {
@@ -25,9 +26,9 @@ class SingleProductFragment : Fragment() {
 
     private fun setLayout(){
         arguments?.let {
-            val product = it.getSerializable("product") as Product
+            val product = it.getSerializable("product") as ProductRoomModel
             Glide.with(binding.root)
-                .load(product.images[0])
+                .load(product.images)
                 .into(binding.imgProduct)
             binding.ratingBar.rating = product.rating.toFloat()
             binding.txtTitle.text = product.title
