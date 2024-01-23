@@ -1,9 +1,12 @@
 package com.matrix.android_104_android.api
 
 
+import com.matrix.android_104_android.model.Product
 import com.matrix.android_104_android.model.ProductList
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface ProductApi {
@@ -19,5 +22,8 @@ interface ProductApi {
 
     @GET("auth/products/search")
     suspend fun search(@retrofit2.http.Query("q") query: String): Response<ProductList>
+
+    @POST("auth/products/add")
+    suspend fun add(@Body product:Product):Response<Product>
 
 }

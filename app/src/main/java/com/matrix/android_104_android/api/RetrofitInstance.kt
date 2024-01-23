@@ -9,34 +9,34 @@ import retrofit2.converter.gson.GsonConverterFactory
 const val url = "https://dummyjson.com/"
 
 object RetrofitInstance {
-    val userApi = Retrofit.Builder()
-        .baseUrl(url)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-        .create(UserApi::class.java)
+    var token = ""
+    private var retrofitInstance :Retrofit? = null
 
-    fun getProductApi(token: String): ProductApi {
-        var productApi: ProductApi? = null
-        val okHttpClient =
-            OkHttpClient().newBuilder().addInterceptor(TokenInterceptor(token)).build()
 
-        productApi = Retrofit.Builder()
-            .baseUrl(url)
-            .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(ProductApi::class.java)
-        return productApi
+    fun getRetrofitInstance():Retrofit?{
+        if(retrofitInstance==null){
+            val okHttpClient =
+                OkHttpClient().newBuilder().addInterceptor(TokenInterceptor()).build()
+
+            retrofitInstance = Retrofit.Builder()
+                .baseUrl(url)
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+        }
+        return retrofitInstance
     }
+
+
 
 }
 
 
-class TokenInterceptor(private val token: String) : Interceptor {
+class TokenInterceptor() : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
         val authRequest = request.newBuilder().addHeader(
-            "Authorization", "Bearer $token"
+            "Authorization", "Bearer ${RetrofitInstance.token}"
         ).build()
         return chain.proceed(authRequest)
     }
