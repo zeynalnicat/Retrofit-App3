@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.matrix.android_104_android"
+    namespace = "com.matrix.wishlist"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.matrix.android_104_android"
+        applicationId = "com.matrix.wishlist"
         minSdk = 24
         targetSdk = 33
         versionCode = 1

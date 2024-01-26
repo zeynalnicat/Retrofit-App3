@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.matrix.android_104_android.ui.fragments.LoginFragment"
+        android:name="com.matrix.wishlist.ui.fragments.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.matrix.android_104_android.ui.fragments.HomeFragment"
+        android:name="com.matrix.wishlist.ui.fragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -30,12 +30,12 @@
     </fragment>
     <fragment
         android:id="@+id/wishListFragment"
-        android:name="com.matrix.android_104_android.ui.fragments.WishListFragment"
+        android:name="com.matrix.wishlist.ui.fragments.WishListFragment"
         android:label="fragment_wish_list"
         tools:layout="@layout/fragment_wish_list" />
     <fragment
         android:id="@+id/accountFragment"
-        android:name="com.matrix.android_104_android.ui.fragments.AccountFragment"
+        android:name="com.matrix.wishlist.ui.fragments.AccountFragment"
         android:label="fragment_account"
         tools:layout="@layout/fragment_account" >
         <action
@@ -46,12 +46,12 @@
     </fragment>
     <fragment
         android:id="@+id/singleProductFragment"
-        android:name="com.matrix.android_104_android.ui.fragments.SingleProductFragment"
+        android:name="com.matrix.wishlist.ui.fragments.SingleProductFragment"
         android:label="fragment_single_product"
         tools:layout="@layout/fragment_single_product" />
     <fragment
         android:id="@+id/addProductFragment"
-        android:name="com.matrix.android_104_android.ui.fragments.AddProductFragment"
+        android:name="com.matrix.wishlist.ui.fragments.AddProductFragment"
         android:label="fragment_add_product"
         tools:layout="@layout/fragment_add_product" />
 </navigation>

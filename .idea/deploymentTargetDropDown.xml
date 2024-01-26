@@ -9,13 +9,13 @@
               <type value="RUNNING_DEVICE_TARGET" />
               <deviceKey>
                 <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\ASUS TUF\.android\avd\Pixel_7_Pro_API_34.avd" />
+                  <type value="SERIAL_NUMBER" />
+                  <value value="R58R82LL12D" />
                 </Key>
               </deviceKey>
             </Target>
           </runningDeviceTargetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-01-23T13:38:45.618858700Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-01-26T18:30:43.935627200Z" />
         </State>
       </entry>
     </value>
